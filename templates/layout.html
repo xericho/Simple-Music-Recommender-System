@@ -1,0 +1,28 @@
+<!-- Source: https://www.youtube.com/watch?v=zRwy8gtgJ1A -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DIY Spotify</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
+
+     <style type ="text/css" >
+       .footer{ 
+           position: fixed;     
+           text-align: center;    
+           bottom: 0px; 
+           width: 75%;
+       }  
+      </style>
+
+  </head>
+  <body>
+
+    {% include 'includes/_navbar2.html' %}
+    <div class="container">
+      {% block body %}{% endblock %}
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
