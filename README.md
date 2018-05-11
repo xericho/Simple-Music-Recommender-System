@@ -1,6 +1,6 @@
 # Simple-Music-Recommender-System
 
-## Installtion
+## Installation
 ```
 sudo pip install -r requirements.txt
 ```
