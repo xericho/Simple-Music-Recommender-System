@@ -1,0 +1,6 @@
+.scrollable {
+    height: 100000px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+}
