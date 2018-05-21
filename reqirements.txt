@@ -1,3 +1,4 @@
 Flask
 sqlalchemy
 Flask-SQLAlchemy
+Flask-Table==0.2.4
