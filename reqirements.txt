@@ -1,2 +1,4 @@
 Flask
 sqlalchemy
+Flask-SQLAlchemy
+Flask-Table
