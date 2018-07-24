@@ -4,7 +4,8 @@ from display_tables import Results
 from flask_table import Table, Col
 import sqlite3 as sql
 
-DATABASE = './mymusic.db'
+# DATABASE = './mymusic.db'
+DATABASE = './mymusicsample.db'
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ def index():
 def songs():
     with app.app_context():      # for auto closing when out of scope
         db = get_db()
-        cursor = db.execute("SELECT title, genre, duration FROM musics LIMIT 50")
+        cursor = db.execute("SELECT title, genre, duration, url_link FROM music LIMIT 50") # table is called musics
         items = cursor.fetchall()
         return render_template('songs.html', items=items)
 
@@ -54,4 +55,12 @@ if __name__ == "__main__":
 """
 Useful links:
 https://ains.co/blog/things-which-arent-magic-flask-part-2.html
+
+SQLITE3 COMMANDS
+Open sqlite3 in terminal: sqlite3
+Open file: .open FILENAME
+List the tables in your database: .tables
+List how the table looks: .schema tablename
+Print the entire table: SELECT * FROM tablename;
+List all of the available SQLite prompt commands: .help
 """

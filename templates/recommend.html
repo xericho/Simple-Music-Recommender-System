@@ -3,6 +3,7 @@
 {% block body %}
 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <h2>Recommendations</h2>
 
 <!-- < div class="row">
@@ -182,182 +183,365 @@
     </div>
 </div> -->
 
-<table cellspacing="0" cellpadding="0" border="0" width="325">
- <tr>
-  <td>
-   <table cellspacing="0" cellpadding="1" border="1" width="300" >
-     <tr style="color:white;background-color:grey">
-        <th width="33%">Song</th>
-        <th width="33%">Album</th>
-        <th>Genre</th>
-     </tr>
-   </table>
-  </td>
- </tr>
-<tr>
-<td>
-   <div style="width:300px; height:450px; overflow:auto;">
-     <table cellspacing="0" cellpadding="1" border="1" width="300" class="table">
-            <tr>
-              <td>album 0</td>
-              <td>song0</td>
-              <td>genre0</td>
-            </tr>
-            <tr>
-              <td>album 1</td>
-              <td>song 1</td>
-              <td>genre1</td>
-            </tr>
-            <tr>
-              <td>album2</td>
-              <td>song 2</td>
-              <td>genre2</td>
-            </tr>
-            <tr>
-              <td>album3</td>
-              <td>song 3</td>
-              <td>genre3</td>
-            </tr>
-            <tr>
-              <td>album4</td>
-              <td>song 4</td>
-              <td>genre 4</td>
-            </tr>
-            <tr>
-              <td>album5</td>
-              <td>song 5</td>
-              <td>genre 5</td>
-            </tr>
-            <tr>
-              <td>album 6</td>
-              <td>song6</td>
-              <td>genre6</td>
-            </tr>
-            <tr>
-              <td>album 7</td>
-              <td>song7</td>
-              <td>genre7</td>
-            </tr>
-            <tr>
-              <td>album8</td>
-              <td>song8</td>
-              <td>genre 8</td>
-            </tr>
-            <tr>
-              <td>album9</td>
-              <td>song9</td>
-              <td>genre9</td>
-            </tr>
-            <tr>
-              <td>album10</td>
-              <td>song 10</td>
-              <td>genre10</td>
-            </tr>
-            <tr>
-              <td>album11</td>
-              <td>song 11</td>
-              <td>genre11</td>
-            </tr>
-            <tr>
-              <td>album12</td>
-              <td>song12</td>
-              <td>genre12</td>
-            </tr>
-            <tr>
-              <td>album 13</td>
-              <td>song13</td>
-              <td>genre13</td>
-            </tr>
-            <tr>
-              <td>album14</td>
-              <td>song14</td>
-              <td>genre14</td>
-            </tr>
-            <tr>
-              <td>album15</td>
-              <td>song15</td>
-              <td>genre15</td>
-            </tr>
-            <tr>
-              <td>album 16</td>
-              <td>song16</td>
-              <td>genre16</td>
-            </tr>
-            <tr>
-              <td>album 17</td>
-              <td>song17</td>
-              <td>genre17</td>
-            </tr>
-            <tr>
-              <td>album18</td>
-              <td>song18</td>
-              <td>genre18</td>
-            </tr>
-            <tr>
-              <td>album19</td>
-              <td>song19</td>
-              <td>genre19</td>
-            </tr>
-            <tr>
-              <td>album20</td>
-              <td>song20</td>
-              <td>genre20</td>
-            </tr>
-            <tr>
-              <td>album 21</td>
-              <td>song 21</td>
-              <td>genre21</td>
-            </tr>
-            <tr>
-              <td>album22</td>
-              <td>song22</td>
-              <td>genre22</td>
-            </tr>
-            <tr>
-              <td>album 23</td>
-              <td>song23</td>
-              <td>genre23</td>
-            </tr>
-            <tr>
-              <td>album 24</td>
-              <td>song24</td>
-              <td>genre24</td>
-            </tr>
-            <tr>
-              <td>album25</td>
-              <td>song25</td>
-              <td>genre25</td>
-            </tr>
-            <tr>
-              <td>album26</td>
-              <td>song26</td>
-              <td>genre26</td>
-            </tr>
-            <tr>
-              <td>album27</td>
-              <td>song27</td>
-              <td>genre27</td>
-            </tr>
-            <tr>
-              <td>album28</td>
-              <td>song28</td>
-              <td>genre28</td>
-            </tr>
-            <tr>
-              <td>album29</td>
-              <td>song 29</td>
-              <td>genre29</td>
-            </tr>
-            <tr>
-              <td>album30</td>
-              <td>song 30</td>
-              <td>genre30</td>
-            </tr> 
-     </table>  
-   </div>
-  </td>
- </tr>
-</table>
+<div class="w3-container" style="width:100%; height:450px; overflow:auto;">
+  <table class="w3-table-all w3-hoverable">
+    <thead>
+      <tr class="w3-gray">
+        <th width="30%">Song</th>
+        <th width="30%">Album</th>
+        <th width="30%">Genre</th>
+        <th width="10%">Play</th> 
+      </tr>
+    </thead>
+    <tr>
+      <td>albumfsdadf 0</td>
+      <td>song0</td>
+      <td>genre0</td>
+      <td>
+        <button class="w3-button w3-round w3-small w3-blue" onclick="alert('Playing a song!')" value="song0">Play</button>
+      </td>
+    </tr>
+    <tr>
+      <td>album 1</td>
+      <td>song 1</td>
+      <td>genre1</td>
+      <td>
+        <button class="w3-button w3-round w3-small w3-blue">Play</button>
+      </td>
+    </tr>
+    <tr>
+      <td>album2</td>
+      <td>song 2</td>
+      <td>genre2</td>
+    </tr>
+    <tr>
+      <td>album3</td>
+      <td>song 3</td>
+      <td>genre3</td>
+    </tr>
+    <tr>
+      <td>album4</td>
+      <td>song 4</td>
+      <td>genre 4</td>
+    </tr>
+    <tr>
+      <td>album5</td>
+      <td>song 5</td>
+      <td>genre 5</td>
+    </tr>
+    <tr>
+      <td>album 6</td>
+      <td>song6</td>
+      <td>genre6</td>
+    </tr>
+    <tr>
+      <td>album 7</td>
+      <td>song7</td>
+      <td>genre7</td>
+    </tr>
+    <tr>
+      <td>album8</td>
+      <td>song8</td>
+      <td>genre 8</td>
+    </tr>
+    <tr>
+      <td>album9</td>
+      <td>song9</td>
+      <td>genre9</td>
+    </tr>
+    <tr>
+      <td>album10</td>
+      <td>song 10</td>
+      <td>genre10</td>
+    </tr>
+    <tr>
+      <td>album11</td>
+      <td>song 11</td>
+      <td>genre11</td>
+    </tr>
+    <tr>
+      <td>album12</td>
+      <td>song12</td>
+      <td>genre12</td>
+    </tr>
+    <tr>
+      <td>album 13</td>
+      <td>song13</td>
+      <td>genre13</td>
+    </tr>
+    <tr>
+      <td>album14</td>
+      <td>song14</td>
+      <td>genre14</td>
+    </tr>
+    <tr>
+      <td>album15</td>
+      <td>song15</td>
+      <td>genre15</td>
+    </tr>
+    <tr>
+      <td>album 16</td>
+      <td>song16</td>
+      <td>genre16</td>
+    </tr>
+    <tr>
+      <td>album 17</td>
+      <td>song17</td>
+      <td>genre17</td>
+    </tr>
+    <tr>
+      <td>album18</td>
+      <td>song18</td>
+      <td>genre18</td>
+    </tr>
+    <tr>
+      <td>album19</td>
+      <td>song19</td>
+      <td>genre19</td>
+    </tr>
+    <tr>
+      <td>album20</td>
+      <td>song20</td>
+      <td>genre20</td>
+    </tr>
+    <tr>
+      <td>album 21</td>
+      <td>song 21</td>
+      <td>genre21</td>
+    </tr>
+    <tr>
+      <td>album22</td>
+      <td>song22</td>
+      <td>genre22</td>
+    </tr>
+    <tr>
+      <td>album 23</td>
+      <td>song23</td>
+      <td>genre23</td>
+    </tr>
+    <tr>
+      <td>album 24</td>
+      <td>song24</td>
+      <td>genre24</td>
+    </tr>
+    <tr>
+      <td>album25</td>
+      <td>song25</td>
+      <td>genre25</td>
+    </tr>
+    <tr>
+      <td>album26</td>
+      <td>song26</td>
+      <td>genre26</td>
+    </tr>
+    <tr>
+      <td>album27</td>
+      <td>song27</td>
+      <td>genre27</td>
+    </tr>
+    <tr>
+      <td>album28</td>
+      <td>song28</td>
+      <td>genre28</td>
+    </tr>
+    <tr>
+      <td>album29</td>
+      <td>song 29</td>
+      <td>genre29</td>
+    </tr>
+    <tr>
+      <td>album30</td>
+      <td>song 30</td>
+      <td>genre30</td>
+    </tr> 
+  </table>
+</div>
+
+
+<!-- <table class="w3-table-all" width="100%">
+  <tr>
+    <td>
+      <table width="100%">
+        <tr>
+          <th width="30%">Song</th>
+          <th width="30%">Album</th>
+          <th width="30%">Genre</th>
+          <th width="10%">Play</th> 
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="w3-container" style="width:100%; height:450px; overflow:auto;">
+        <table class="w3-table w3-striped w3-bordered">
+              <tr>
+                <td>albumfsdadf 0</td>
+                <td>song0</td>
+                <td>genre0</td>
+                <td>
+                  <button class="w3-button w3-round w3-small w3-blue">Play</button>
+                </td>
+              </tr>
+              <tr>
+                <td>album 1</td>
+                <td>song 1</td>
+                <td>genre1</td>
+                <td>
+                  <button class="w3-button w3-round w3-small w3-blue">Play</button>
+                </td>
+              </tr>
+              <tr>
+                <td>album2</td>
+                <td>song 2</td>
+                <td>genre2</td>
+              </tr>
+              <tr>
+                <td>album3</td>
+                <td>song 3</td>
+                <td>genre3</td>
+              </tr>
+              <tr>
+                <td>album4</td>
+                <td>song 4</td>
+                <td>genre 4</td>
+              </tr>
+              <tr>
+                <td>album5</td>
+                <td>song 5</td>
+                <td>genre 5</td>
+              </tr>
+              <tr>
+                <td>album 6</td>
+                <td>song6</td>
+                <td>genre6</td>
+              </tr>
+              <tr>
+                <td>album 7</td>
+                <td>song7</td>
+                <td>genre7</td>
+              </tr>
+              <tr>
+                <td>album8</td>
+                <td>song8</td>
+                <td>genre 8</td>
+              </tr>
+              <tr>
+                <td>album9</td>
+                <td>song9</td>
+                <td>genre9</td>
+              </tr>
+              <tr>
+                <td>album10</td>
+                <td>song 10</td>
+                <td>genre10</td>
+              </tr>
+              <tr>
+                <td>album11</td>
+                <td>song 11</td>
+                <td>genre11</td>
+              </tr>
+              <tr>
+                <td>album12</td>
+                <td>song12</td>
+                <td>genre12</td>
+              </tr>
+              <tr>
+                <td>album 13</td>
+                <td>song13</td>
+                <td>genre13</td>
+              </tr>
+              <tr>
+                <td>album14</td>
+                <td>song14</td>
+                <td>genre14</td>
+              </tr>
+              <tr>
+                <td>album15</td>
+                <td>song15</td>
+                <td>genre15</td>
+              </tr>
+              <tr>
+                <td>album 16</td>
+                <td>song16</td>
+                <td>genre16</td>
+              </tr>
+              <tr>
+                <td>album 17</td>
+                <td>song17</td>
+                <td>genre17</td>
+              </tr>
+              <tr>
+                <td>album18</td>
+                <td>song18</td>
+                <td>genre18</td>
+              </tr>
+              <tr>
+                <td>album19</td>
+                <td>song19</td>
+                <td>genre19</td>
+              </tr>
+              <tr>
+                <td>album20</td>
+                <td>song20</td>
+                <td>genre20</td>
+              </tr>
+              <tr>
+                <td>album 21</td>
+                <td>song 21</td>
+                <td>genre21</td>
+              </tr>
+              <tr>
+                <td>album22</td>
+                <td>song22</td>
+                <td>genre22</td>
+              </tr>
+              <tr>
+                <td>album 23</td>
+                <td>song23</td>
+                <td>genre23</td>
+              </tr>
+              <tr>
+                <td>album 24</td>
+                <td>song24</td>
+                <td>genre24</td>
+              </tr>
+              <tr>
+                <td>album25</td>
+                <td>song25</td>
+                <td>genre25</td>
+              </tr>
+              <tr>
+                <td>album26</td>
+                <td>song26</td>
+                <td>genre26</td>
+              </tr>
+              <tr>
+                <td>album27</td>
+                <td>song27</td>
+                <td>genre27</td>
+              </tr>
+              <tr>
+                <td>album28</td>
+                <td>song28</td>
+                <td>genre28</td>
+              </tr>
+              <tr>
+                <td>album29</td>
+                <td>song 29</td>
+                <td>genre29</td>
+              </tr>
+              <tr>
+                <td>album30</td>
+                <td>song 30</td>
+                <td>genre30</td>
+              </tr> 
+        </table>  
+      </div>
+    </td>
+  </tr>
+</table> -->
+
 
   <div class="footer">
   <iframe width="80%" height="125" scrolling="no" frameborder="no" src='https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441888573&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27'></iframe>
@@ -369,13 +553,13 @@
     newSoundUrl = 'http://api.soundcloud.com/tracks/441456084';
 
     widget.bind(SC.Widget.Events.READY, function() {
-    // load new widget
-    widget.bind(SC.Widget.Events.FINISH, function() {
-    widget.load(newSoundUrl, {
-    show_artwork: false
-    });
-    });
-    });
+      // load new widget
+      widget.bind(SC.Widget.Events.FINISH, function() {
+          widget.load(newSoundUrl, {
+            show_artwork: false
+          });   
+        });
+      });
     }());
     </script>
   </div>

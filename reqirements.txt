@@ -2,3 +2,4 @@ Flask
 sqlalchemy
 Flask-SQLAlchemy
 Flask-Table
+sqlite3
