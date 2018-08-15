@@ -22,7 +22,7 @@ function play(p1) {
         <th width="30%">Song</th>
         <th width="30%">Album</th>
         <th width="30%">Genre</th>
-        <th width="10%">Play</th> 
+        <th width="10%">Select</th> 
       </tr>
     </thead>
     {% for item in items %}
@@ -31,7 +31,7 @@ function play(p1) {
         <td>{{ item[1] }}</td>
         <td>{{ item[2] }}</td>
         <td> 
-          <button class="w3-button w3-round w3-small w3-blue" onclick="play('{{ item[3] }}')">Play</button>
+          <button class="w3-button w3-round w3-small w3-blue" onclick="play('{{ item[3] }}')">Select</button>
         </td> 
       </tr>
     {% endfor %}
