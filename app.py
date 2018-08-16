@@ -43,7 +43,7 @@ def history():
 
 @app.route('/recommend')
 def recommend():    
-    return render_template('recommend.html', pm=pop_rec)
+    return render_template('recommend.html', pm=pop_rec, df=data)
 
 @app.route('/about')
 def about():    
