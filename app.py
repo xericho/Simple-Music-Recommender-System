@@ -1,11 +1,14 @@
 from setup_flask import app
 from flask import Flask, flash, render_template, request, redirect, g
-from display_tables import Results
 from flask_table import Table, Col
 import sqlite3 as sql
+import pickle
+import pandas as pd 
+import numpy as np 
+import Recommenders
 
 # DATABASE = './mymusic.db'
-DATABASE = './mymusicsample.db'
+DATABASE = './mymusicsample_v3.db'
 
 app = Flask(__name__)
 
@@ -15,18 +18,24 @@ def get_db():
         db = g._database = sql.connect(DATABASE)
     return db
 
+def load_data(filename):
+    with open(filename, 'rb') as f:
+        data = pickle.load(f)
+    return data
+
 @app.route('/')
 def index():    
     return render_template('index.html')
 
 @app.route("/songs", methods=['GET','POST'])
+# def songs():
+#     with app.app_context():      # for auto closing when out of scope
+#         db = get_db()
+#         cursor = db.execute("SELECT title, genre, duration, url_link FROM music LIMIT 50") # table is called musics
+#         items = cursor.fetchall()
+#         return render_template('songs.html', items=items)
 def songs():
-    with app.app_context():      # for auto closing when out of scope
-        db = get_db()
-        cursor = db.execute("SELECT title, genre, duration, url_link FROM music LIMIT 50") # table is called musics
-        items = cursor.fetchall()
-        return render_template('songs.html', items=items)
-
+    return render_template('songs.html', data=data.to_dict())
 
 @app.route('/history')
 def history():    
@@ -34,7 +43,7 @@ def history():
 
 @app.route('/recommend')
 def recommend():    
-    return render_template('recommend.html')
+    return render_template('recommend.html', pm=pop_rec)
 
 @app.route('/about')
 def about():    
@@ -49,6 +58,14 @@ def close_connection(exception):
 
 # run the application
 if __name__ == "__main__":  
+    # Load database
+    data = load_data('mymusicsample_v3.pkl')
+
+    # Create an instance of popularity based recommender class
+    pm = Recommenders.popularity_recommender_py()
+    pm.create(data, 'user_id', 'title')
+    pop_rec = pm.recommend(data.iloc[0]['user_id'])     # recommend only once
+
     app.run(debug=True)
 
 
