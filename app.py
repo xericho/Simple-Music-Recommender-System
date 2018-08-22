@@ -1,22 +1,21 @@
 from setup_flask import app
-from flask import Flask, flash, render_template, request, redirect, g
+from flask import Flask, flash, render_template, request, redirect, session, url_for
 from flask_table import Table, Col
-import sqlite3 as sql
+# import sqlite3 as sql
 import pickle
 import pandas as pd 
-import numpy as np 
 import Recommenders
 
 # DATABASE = './mymusic.db'
-DATABASE = './mymusicsample_v3.db'
+# DATABASE = './mymusicsample_v3.db'
 
 app = Flask(__name__)
 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sql.connect(DATABASE)
-    return db
+# def get_db():
+#     db = getattr(g, '_database', None)
+#     if db is None:
+#         db = g._database = sql.connect(DATABASE)
+#     return db
 
 def load_data(filename):
     with open(filename, 'rb') as f:
@@ -27,6 +26,10 @@ def load_data(filename):
 def index():    
     return render_template('index.html')
 
+@app.route('/signin')
+def signin():    
+    return render_template('signin.html')
+
 @app.route("/songs", methods=['GET','POST'])
 # def songs():
 #     with app.app_context():      # for auto closing when out of scope
@@ -35,7 +38,7 @@ def index():
 #         items = cursor.fetchall()
 #         return render_template('songs.html', items=items)
 def songs():
-    return render_template('songs.html', data=data.to_dict())
+    return render_template('songs.html', df=data_clean)
 
 @app.route('/history')
 def history():    
@@ -49,17 +52,24 @@ def recommend():
 def about():    
     return render_template('about.html')
 
+@app.route('/update_df')
+def update_df():
+    print("updated!")
+    return 'nothing'
+
 """ For closing database """
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+# @app.teardown_appcontext
+# def close_connection(exception):
+#     db = getattr(g, '_database', None)
+#     if db is not None:
+#         db.close()
 
 # run the application
 if __name__ == "__main__":  
     # Load database
     data = load_data('mymusicsample_v3.pkl')
+    data_clean = data.drop_duplicates(subset='title')
+
 
     # Create an instance of popularity based recommender class
     pm = Recommenders.popularity_recommender_py()

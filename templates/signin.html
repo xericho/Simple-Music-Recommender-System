@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  
+  <h1>Sign In</h1>
+  <!-- <form action="/action_page.php"> -->
+	Choose an user ID (1-500): <input type="number" id="user_id"><br>
+	<!-- <button onclick="submit()" id="btn" href="/songs">Submit &raquo;</button> -->
+	<a class="btn btn-primary" href="/songs" role="button" onclick="submit()">Submit &raquo;</a>
+  <!-- </form> -->
+
+
+<p id="print"></p>
+
+<script type="text/javascript">
+function submit() {
+    var user_id = document.getElementById("user_id").value;
+    // document.getElementById("print").innerHTML = "Entered user ID: " + user_id;
+	localStorage.setItem("USERID", user_id);  // Store the user id in local storage
+}
+</script>
+
+{% endblock %}
