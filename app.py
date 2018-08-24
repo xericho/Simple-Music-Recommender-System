@@ -28,7 +28,7 @@ def index():
 
 @app.route('/dashboard', methods=['GET','POST'])
 def dashboard():    
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', df_clean=data_clean, pm=pop_rec, df=data)
 
 @app.route('/signin')
 def signin():    
