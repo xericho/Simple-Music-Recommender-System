@@ -2,7 +2,6 @@
 
 {% block body %}
 
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <script type=text/javascript>
@@ -14,7 +13,7 @@ function play(p1) {
 </script>
 
 <script type=text/javascript>
-function loadID() {
+function print_userid() {
   document.getElementById("add_user_txt").innerHTML = "User ID: " + localStorage.getItem("USERID");
 }    
 </script>
@@ -65,7 +64,7 @@ function loadID() {
 
 
 <div class="footer">
-  <iframe onload="loadID()" width="80%" height="125" scrolling="no" frameborder="no" src='https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441889332&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27' id="iframe"></iframe>
+  <iframe onload="print_userid()" width="80%" height="125" scrolling="no" frameborder="no" src='https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441889332&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27' id="iframe"></iframe>
   <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"> </script>
     <script type="text/javascript">
       (function() {

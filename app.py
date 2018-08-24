@@ -1,4 +1,4 @@
-from setup_flask import app
+# from setup_flask import app
 from flask import Flask, flash, render_template, request, redirect, session, url_for
 from flask_table import Table, Col
 # import sqlite3 as sql
@@ -22,9 +22,13 @@ def load_data(filename):
         data = pickle.load(f)
     return data
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():    
     return render_template('index.html')
+
+@app.route('/dashboard', methods=['GET','POST'])
+def dashboard():    
+    return render_template('dashboard.html')
 
 @app.route('/signin')
 def signin():    
@@ -44,7 +48,7 @@ def songs():
 def history():    
     return render_template('history.html')
 
-@app.route('/recommend')
+@app.route('/recommend', methods=['GET','POST'])
 def recommend():    
     return render_template('recommend.html', pm=pop_rec, df=data)
 

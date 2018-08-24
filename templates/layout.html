@@ -1,11 +1,17 @@
 <!-- Source: https://www.youtube.com/watch?v=zRwy8gtgJ1A -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Cloudify</title>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
+    <!-- Set encoding -->
+    <meta charset="utf-8"> 
 
+    <!-- Set title of webpage (title of tab) -->
+    <title>Cloudify</title>
+
+    <!-- Dynamically link the css file  -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Create a footer for Soundcloud widget -->
      <style type ="text/css" >
        .footer{ 
            position: fixed;     
@@ -16,13 +22,81 @@
       </style>
 
   </head>
+
+  <header>
+    <!-- Add nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <!-- Add logo -->
+      <a class="navbar-brand" href="/">
+        <img style="max-height:40px; background-color:transparent;" src="{{ url_for('static', filename='images/test2.png') }}">
+      </a>
+
+      <!-- Add buttons to pages -->
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/songs">Songs<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/recommend">Recommendations<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item link">
+            <a class="nav-link" href="/history">History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/about">About</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav navbar-right">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <span class="
+glyphicon glyphicon-log-in"></span>
+            Login
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Enter user_id</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <!-- Add form to store user_id -->
+                    <form action="" class="form-inline" method="post">
+                      <input type="text" class="form-control" placeholder="1-500" name="id" value="">
+                      <input class="btn btn-primary" type="submit" value="Login" data-dismiss="modal">
+                    </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+
+      </div>
+    </nav>
+
+  </header>
+
   <body>
 
-    {% include 'includes/_navbar2.html' %}
-    <div class="container">
+    <!-- Add jquery for modals -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Dynamically link javascript bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <div class="container-fluid">
       {% block body %}{% endblock %}
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
   </body>
+
 </html>
