@@ -1,9 +1,6 @@
-{# {% extends 'layout.html' %} #}
-
-{% block body %}
 
 <h2> 
-  Top 10 Songs 
+  Top 10 Popular Songs 
   <span style="float:right;"> 
     User ID: {{ user_id }}
   </span> 
@@ -20,7 +17,7 @@
         <th width="10%">Select</th> 
       </tr>
     </thead>
-    {% for i, row in pm.iterrows() %}
+    {% for i, row in pop_model.iterrows() %}
       <tr> 
         <td>{{ row['Rank']|int  }}</td>
         <td>{{ row['title'] }}</td>
@@ -33,4 +30,3 @@
   </table>
 </div>  
 
-{% endblock %}

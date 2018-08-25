@@ -1,0 +1,36 @@
+
+<h2> 
+  Top 10 Recommended Songs 
+  <span style="float:right;"> 
+    User ID: {{ user_id }}
+  </span> 
+</h2>
+
+<div class="container-fluid" style="width:100%; height:50%; overflow:auto;">
+  {% if user_id %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th width="30%">Rank</th>
+          <th width="30%">Song</th>
+          <th width="30%">Score</th>
+          <th width="10%">Select</th> 
+        </tr>
+      </thead>
+        {% set rec = is_model.recommend(user_id|int) %}
+        {% for i, row in rec.iterrows() %}
+        <tr> 
+          <td>{{ row['rank']|int  }}</td>
+          <td>{{ row['song'] }}</td>
+          <td>{{ row['score'] }}</td>
+          <td> 
+            <button class="btn btn-primary" onclick="play('{{ row['url_link'] }}')">Select</button>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <h2>Please log in to see recommendations!</h2>
+  {% endif %}
+</div>  
+
