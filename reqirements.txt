@@ -2,4 +2,5 @@ Flask
 sqlalchemy
 Flask-SQLAlchemy
 Flask-Table
-sqlite3
+pandas
+numpy

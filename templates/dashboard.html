@@ -35,16 +35,11 @@ function print_userid() {
   <div class="col-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Songs</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Recommendations</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">About</a>
+      <a class="nav-link" id="v-pills-songs-tab" data-toggle="pill" href="#v-pills-songs" role="tab" aria-controls="v-pills-songs" aria-selected="false">Songs</a>
+      <a class="nav-link" id="v-pills-pop-rec-tab" data-toggle="pill" href="#v-pills-pop-rec" role="tab" aria-controls="v-pills-pop-rec" aria-selected="false">Popularity Recommender System</a>
+      <a class="nav-link" id="v-pills-item-rec-tab" data-toggle="pill" href="#v-pills-item-rec" role="tab" aria-controls="v-pills-item-rec" aria-selected="false">Item-Similarity Recommender System</a>
+      <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab" aria-controls="v-pills-about" aria-selected="false">About</a>
     </div>
-
-    <div class="footer" align="center">
-  <iframe onload="print_userid()" width="1000" height="125" scrolling="no" frameborder="no" src='https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441889332&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27' id="iframe"></iframe>
-  <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"> </script>
-
-</div>
   </div>
 
 
@@ -53,13 +48,16 @@ function print_userid() {
       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
       	<h1>Hello world!</h1>
       </div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <div class="tab-pane fade" id="v-pills-songs" role="tabpanel" aria-labelledby="v-pills-songs-tab">
       	{% include 'songs.html' %}
       </div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+      <div class="tab-pane fade" id="v-pills-pop-rec" role="tabpanel" aria-labelledby="v-pills-pop-rec-tab">
       	{% include 'recommend.html' %}
       </div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+      <div class="tab-pane fade" id="v-pills-item-rec" role="tabpanel" aria-labelledby="v-pills-item-rec-tab">
+        {% include 'recommend.html' %}
+      </div>
+      <div class="tab-pane fade" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-about-tab">
       	{% include 'about.html' %}
       </div>
     </div>
