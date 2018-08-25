@@ -10,7 +10,7 @@ import Recommenders
 # DATABASE = './mymusicsample_v3.db'
 
 app = Flask(__name__)
-
+app.secret_key = 'secret'   # needed to flash notifications
 # def get_db():
 #     db = getattr(g, '_database', None)
 #     if db is None:
@@ -23,18 +23,21 @@ def load_data(filename):
     return data
 
 @app.route('/', methods=['GET','POST'])
-def index():    
+def index():
     return render_template('index.html')
 
-@app.route('/dashboard', methods=['GET','POST'])
-def dashboard():    
-    return render_template('dashboard.html', df_clean=data_clean, pm=pop_rec, df=data)
+@app.route('/dashboard/', methods=['GET','POST'])
+def dashboard():
+    user_id = None
+    if request.method == "POST":
+        user_id = request.form['user_id']
+    return render_template('dashboard.html', df_clean=data_clean, pm=pop_rec, df=data, user_id=user_id)
 
-@app.route('/signin')
+@app.route('/signin/')
 def signin():    
     return render_template('signin.html')
 
-@app.route("/songs", methods=['GET','POST'])
+@app.route("/songs/", methods=['GET', 'POST'])
 # def songs():
 #     with app.app_context():      # for auto closing when out of scope
 #         db = get_db()
@@ -44,19 +47,19 @@ def signin():
 def songs():
     return render_template('songs.html', df=data_clean)
 
-@app.route('/history')
+@app.route('/history/')
 def history():    
     return render_template('history.html')
 
-@app.route('/recommend', methods=['GET','POST'])
+@app.route('/recommend/', methods=['GET','POST'])
 def recommend():    
     return render_template('recommend.html', pm=pop_rec, df=data)
 
-@app.route('/about')
+@app.route('/about/')
 def about():    
     return render_template('about.html')
 
-@app.route('/update_df')
+@app.route('/update_df/')
 def update_df():
     print("updated!")
     return 'nothing'
@@ -73,7 +76,6 @@ if __name__ == "__main__":
     # Load database
     data = load_data('mymusicsample_v3.pkl')
     data_clean = data.drop_duplicates(subset='title')
-
 
     # Create an instance of popularity based recommender class
     pm = Recommenders.popularity_recommender_py()

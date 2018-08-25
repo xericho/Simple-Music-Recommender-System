@@ -33,15 +33,14 @@
             <img style="max-height:40px; background-color:transparent;" src="{{ url_for('static', filename='images/test2.png') }}">
           </a>
           <!-- Add button to dashboard -->
-          <a class="nav-link" href="/dashboard">
+<!--           <a class="nav-link" href="/dashboard">
             <button type="button" class="btn btn-primary">Dashboard</button>
-          </a>
+          </a> -->
         </ul>
 
         <ul class="navbar-nav navbar-right">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <span class="
-glyphicon glyphicon-log-in"></span>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <span class="glyphicon glyphicon-log-in"></span>
             Login
           </button>
 
@@ -51,6 +50,7 @@ glyphicon glyphicon-log-in"></span>
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Enter user_id</h5>
+                  <!-- Add a 'x' to close model -->
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -58,9 +58,14 @@ glyphicon glyphicon-log-in"></span>
                 <div class="modal-body">
                   <div class="container-fluid">
                     <!-- Add form to store user_id -->
-                    <form action="" class="form-inline" method="post">
-                      <input type="text" class="form-control" placeholder="1-500" name="id" value="">
-                      <input class="btn btn-primary" type="submit" value="Login" data-dismiss="modal">
+                    <!-- Action allows to transfer values between pages? -->
+                    <form action="{{ url_for('dashboard') }}" class="form-inline" method="post">
+                      <!-- Input box -->
+                      <input type="number" class="form-control" placeholder="1-500" name="user_id" value="{{ request.form.user_id }}">
+                      <!-- Put a space between input and button -->
+                      <span aria-hidden="true">&nbsp;</span>
+                      <!-- Login button to redirect -->
+                      <input class="btn btn-primary" value="Login" role="button" type="submit" >
                     </form>
                   </div>
                 </div>
@@ -85,7 +90,21 @@ glyphicon glyphicon-log-in"></span>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <div class="container-fluid">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button> 
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
       {% block body %}{% endblock %}
+      
     </div>
 
   </body>
