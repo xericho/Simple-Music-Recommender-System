@@ -46,10 +46,10 @@ class popularity_recommender_py():
 
 #Class for Item similarity based Recommender System model
 class item_similarity_recommender_py():
-    def __init__(self):
-        self.train_data = None
-        self.user_id = None
-        self.item_id = None
+    def __init__(self, train_data, user_id, item_id):
+        self.train_data = train_data
+        self.user_id = user_id
+        self.item_id = item_id
         self.cooccurence_matrix = None
         self.songs_dict = None
         self.rev_songs_dict = None
@@ -123,7 +123,7 @@ class item_similarity_recommender_py():
     
     #Use the cooccurence matrix to make top recommendations
     def generate_top_recommendations(self, user, cooccurence_matrix, all_songs, user_songs):
-        print("Non zero values in cooccurence_matrix :%d" % np.count_nonzero(cooccurence_matrix))
+        # print("Non zero values in cooccurence_matrix: %d" % np.count_nonzero(cooccurence_matrix))
         
         #Calculate a weighted average of the scores in cooccurence matrix for all user songs.
         user_sim_scores = cooccurence_matrix.sum(axis=0)/float(cooccurence_matrix.shape[0])
@@ -168,13 +168,14 @@ class item_similarity_recommender_py():
         user_songs = self.get_user_items(user)    
             
         print("No. of unique songs for the user: %d" % len(user_songs))
+        print(user_songs)
         
         ######################################################
         #B. Get all unique items (songs) in the training data
         ######################################################
         all_songs = self.get_all_items_train_data()
         
-        print("no. of unique songs in the training set: %d" % len(all_songs))
+        print("No. of unique songs in the training set: %d" % len(all_songs))
          
         ###############################################
         #C. Construct item cooccurence matrix of size 
@@ -199,7 +200,7 @@ class item_similarity_recommender_py():
         ######################################################
         all_songs = self.get_all_items_train_data()
         
-        print("no. of unique songs in the training set: %d" % len(all_songs))
+        print("No. of unique songs in the training set: %d" % len(all_songs))
          
         ###############################################
         #C. Construct item cooccurence matrix of size 

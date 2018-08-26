@@ -16,8 +16,7 @@ def load_data(filename):
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    hist = []
-    return render_template('index.html', login_text='Login', url_link=default_url, hist=hist)
+    return render_template('index.html', login_text='Login', url_link=default_url)
 
 @app.route('/dashboard/', methods=['GET','POST'])
 def dashboard():
@@ -26,24 +25,26 @@ def dashboard():
         # Convert string dict to actual dict
         song_choice = ast.literal_eval(str(request.form.get('song_choice')))  
         if song_choice:
-            user_id = song_choice['user_id']
+            user_id = int(song_choice['user_id'])
             url_link = song_choice['url_link']
             title = data['df'].loc[data['df']['url_link'] == url_link, 'title'].iloc[0]
-            data['history'].append([title, url_link])
+            row = data['df'].loc[data['df']['url_link'] == url_link].iloc[0]
+            row['user_id'] = user_id
+            data['history'].append(row)
+            df_combined = data['df'].append(pd.DataFrame(data['history']), ignore_index=True)
+            models['item'].create(df_combined, 'user_id', 'title') 
+
         else:   # has to be a different user_id or started from '/'
             data['history'] = []    # reset history
             url_link = default_url  # reset url
 
-    login_text = 'Logout' if user_id else 'Login'
-
-    # return 'user_id'
     return render_template('dashboard.html', 
                            df=data['df'], 
-                           pop_model=pop_rec, 
+                           pop_model=models['pop'], 
                            user_id=user_id, 
-                           is_model=is_model,
-                           hist=data['history'],
-                           login_text=login_text,
+                           is_model=models['item'],
+                           history=data['history'],
+                           login_text='Logout',
                            url_link=url_link)
 
 # run the application
@@ -57,11 +58,11 @@ if __name__ == "__main__":
     pop_rec = pop_model.recommend(df.iloc[0]['user_id'])     # recommend only once
 
     # Initialize class for item similarity model
-    is_model = R.item_similarity_recommender_py() 
-    is_model.create(df, 'user_id', 'title')
+    is_model = R.item_similarity_recommender_py(df, 'user_id', 'title') 
 
-    # Initialize history of user choices
+    # Store data and models in a dictionary
     data = {'df':df, 'history':[]}
+    models = {'pop': pop_rec, 'item': is_model}
     user_id = None
     default_url = 'https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441889332&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27'
 

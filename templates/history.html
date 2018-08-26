@@ -6,7 +6,7 @@
   </span> 
 </h2>
 
-{% if hist %}
+{% if history %}
 	<div class="container-fluid" style="width:100%; height:50%; overflow:auto;">
 	  <!-- <table class="w3-table-all w3-hoverable"> -->
 	  <table class="table table-hover">
@@ -17,12 +17,12 @@
 	        <th width="10%">Play</th> 
 	      </tr>
 	    </thead>
-	    {% for i in range(hist|length) %}
+	    {% for i in range(history|length) %}
 	      <tr> 
 	        <td>{{ i+1 }}</td>
-	        <td>{{ hist[i][0] }}</td>
+	        <td>{{ history[i]['title'] }}</td>
 	        <td> 
-	          <button class="btn btn-outline-primary" onclick="play('{{ hist[i][1] }}', true)">Select</button>
+	          <button class="btn btn-outline-primary" onclick="play('{{ history[i]['url_link'] }}', true)">Select</button>
 	        </td>
 	      </tr>
 	    {% endfor %}
