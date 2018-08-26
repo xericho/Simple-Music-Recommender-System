@@ -31,7 +31,8 @@
                 <!-- Action redirects to the url -->
                 <form action="{{ url_for('dashboard') }}" class="form-inline" method="post">
                   <!-- Input box -->
-                  <input type="number" class="form-control" placeholder="1-500" name="user_id" value={{request.form.user_id}}>
+                  {% set max = df.drop_duplicates(subset='user_id')|length %}
+                  <input type="number" max="{{max}}" min="1" class="form-control" placeholder="1-{{ max }}" name="user_id" style="width: 50%">
                   <!-- Put a space between input and button -->
                   <span aria-hidden="true">&nbsp;</span>
                   <!-- Login button to redirect -->

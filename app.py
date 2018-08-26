@@ -16,7 +16,7 @@ def load_data(filename):
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html', login_text='Login', url_link=default_url)
+    return render_template('index.html', login_text='Login', url_link=default_url, df=data['df'])
 
 @app.route('/dashboard/', methods=['GET','POST'])
 def dashboard():
