@@ -11,69 +11,10 @@
     <!-- Dynamically link the css file  -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Create a footer for Soundcloud widget -->
-     <style type ="text/css" >
-       .footer{ 
-           position: fixed;     
-           text-align: center;    
-           bottom: 0px; 
-           width: 75%;
-       }  
-      </style>
-
   </head>
 
   <header>
-    <!-- Add nav bar -->
-    <nav class="navbar navbar-fixed-top navbar-expand-md navbar-dark bg-dark mb-4">
-
-        <ul class="navbar-nav mr-auto">
-          <!-- Add logo -->
-          <a class="navbar-brand" href="/">
-            <img style="max-height:40px; background-color:transparent;" src="{{ url_for('static', filename='images/test2.png') }}">
-          </a>
-        </ul>
-
-        <ul class="navbar-nav navbar-right">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <span class="glyphicon glyphicon-log-in"></span>
-            Login
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Enter user_id</h5>
-                  <!-- Add a 'x' to close model -->
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="container-fluid">
-                    <!-- Add form to store user_id -->
-                    <!-- Action allows to transfer values between pages? -->
-                    <form action="{{ url_for('dashboard') }}" class="form-inline" method="post">
-                      <!-- Input box -->
-                      <input type="number" class="form-control" placeholder="1-500" name="user_id" value="{{ request.form.user_id }}">
-                      <!-- Put a space between input and button -->
-                      <span aria-hidden="true">&nbsp;</span>
-                      <!-- Login button to redirect -->
-                      <input class="btn btn-primary" value="Login" role="button" type="submit" >
-                    </form>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                </div>
-              </div>
-            </div>
-          </div>
-        </ul>
-
-    </nav>
-
+    {% include 'includes/navbar.html' %}
   </header>
 
   <body>
@@ -89,12 +30,14 @@
       {% with messages = get_flashed_messages() %}
         {% if messages %}
           {% for message in messages %}
-            <div class="alert alert-warning alert-dismissible" role="alert">
+          <div class="col-md-11" align="right">
+            <div class="alert alert-warning alert-dismissible" role="alert" style="width: 80%; text-align: left">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button> 
               {{ message }}
             </div>
+          </div>
           {% endfor %}
         {% endif %}
       {% endwith %}
@@ -105,12 +48,12 @@
 
   </body>
 
-
-  <footer>
-    <!-- Add widget to the bottom -->
+  <!-- Create a footer for Soundcloud widget -->
+  <footer style="position: fixed; bottom: 0px; width: 75%;">
     <div class="footer">
-      <iframe onload="print_userid()" align="left" style="width:20%; height:125px;" scrolling="no" frameborder="no" src='https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441889332&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27' id="iframe"></iframe>
+      <iframe align="left" style="width:20%; height:125px;" scrolling="no" frameborder="no" src="{{ url_link }}" id="iframe"></iframe>
       <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"> </script>
     </div>
   </footer>
+
 </html>

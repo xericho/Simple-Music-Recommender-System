@@ -3,9 +3,11 @@ from flask_table import Table, Col
 import pickle
 import pandas as pd 
 import Recommenders as R
+import ast
 
 app = Flask(__name__)
-app.secret_key = 'secret'   # needed to flash notifications
+app.secret_key = 'placeholder'   # needed to flash notifications
+
 
 def load_data(filename):
     with open(filename, 'rb') as f:
@@ -14,35 +16,55 @@ def load_data(filename):
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    hist = []
+    return render_template('index.html', login_text='Login', url_link=default_url, hist=hist)
 
 @app.route('/dashboard/', methods=['GET','POST'])
 def dashboard():
-    user_id = None
     if request.method == "POST":
-        user_id = request.form['user_id']
+        user_id = request.form.get('user_id')
+        # Convert string dict to actual dict
+        song_choice = ast.literal_eval(str(request.form.get('song_choice')))  
+        if song_choice:
+            user_id = song_choice['user_id']
+            url_link = song_choice['url_link']
+            title = data['df'].loc[data['df']['url_link'] == url_link, 'title'].iloc[0]
+            data['history'].append([title, url_link])
+        else:   # has to be a different user_id or started from '/'
+            data['history'] = []    # reset history
+            url_link = default_url  # reset url
+
+    login_text = 'Logout' if user_id else 'Login'
+
+    # return 'user_id'
     return render_template('dashboard.html', 
-                           df_clean=data_clean, 
+                           df=data['df'], 
                            pop_model=pop_rec, 
-                           df=data, 
                            user_id=user_id, 
-                           is_model=is_model)
+                           is_model=is_model,
+                           hist=data['history'],
+                           login_text=login_text,
+                           url_link=url_link)
 
 # run the application
 if __name__ == "__main__":  
     # Load database
-    data = load_data('mymusicsample_v3.pkl')
-    data_clean = data.drop_duplicates(subset='title')
+    df = load_data('mymusicsample_v3.pkl')
 
     # Create an instance of popularity based recommender class
     pop_model = R.popularity_recommender_py()
-    pop_model.create(data, 'user_id', 'title')
-    pop_rec = pop_model.recommend(data.iloc[0]['user_id'])     # recommend only once
+    pop_model.create(df, 'user_id', 'title')
+    pop_rec = pop_model.recommend(df.iloc[0]['user_id'])     # recommend only once
 
     # Initialize class for item similarity model
     is_model = R.item_similarity_recommender_py() 
-    is_model.create(data, 'user_id', 'title')
-    
+    is_model.create(df, 'user_id', 'title')
+
+    # Initialize history of user choices
+    data = {'df':df, 'history':[]}
+    user_id = None
+    default_url = 'https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F441889332&show_artwork=true&client_id=93e33e327fd8a9b77becd179652272e2%27'
+
     app.run(debug=True)
 
 

@@ -6,23 +6,26 @@
   </span> 
 </h2>
 
-<div class="container-fluid" style="width:100%; height:50%; overflow:auto;">
+<div class="table-responsive" style="width:100%; height:50%; ">
   <table class="table table-hover">
-    <thead>
+    <thead class="thead-light">
       <tr>
         <th width="40%">Song</th>
         <th width="20%">Duration (sec)</th>
         <th width="30%">Genre</th>
-        <th width="10%">Select</th> 
+        <th width="10%">Play</th> 
       </tr>
     </thead>
+    {% set df_clean = df.drop_duplicates(subset='title') %}
     {% for i in range(df_clean['title']|length) %}
       <tr> 
         <td>{{ df_clean.iloc[i]['title'] }}</td>
         <td>{{ df_clean.iloc[i]['duration']|int // 1000 }}</td>
         <td>{{ df_clean.iloc[i]['genre'] }} </td>
         <td> 
-          <a href=# id=update><button class="btn btn-primary" onclick="play('{{ df_clean.iloc[i]['url_link'] }}')">Select</button></a>
+          <form method="post" class="form-inline"> 
+            <button class="btn btn-outline-primary" onclick="play('{{ df_clean.iloc[i]['url_link'] }}', false);" name="song_choice" value="{'url_link':'{{ df_clean.iloc[i]['url_link'] }}', 'user_id':'{{user_id}}'}">Select</button>
+          </form>
         </td> 
       </tr>
     {% endfor %}

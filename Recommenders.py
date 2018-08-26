@@ -134,7 +134,7 @@ class item_similarity_recommender_py():
         sort_index = sorted(((e,i) for i,e in enumerate(list(user_sim_scores))), reverse=True)
     
         #Create a dataframe from the following
-        columns = ['user_id', 'song', 'score', 'rank']
+        columns = ['user_id', 'song', 'score', 'rank', 'url_link']
         #index = np.arange(1) # array of numbers for the number of samples
         df = pandas.DataFrame(columns=columns)
          
@@ -142,7 +142,7 @@ class item_similarity_recommender_py():
         rank = 1 
         for i in range(0,len(sort_index)):
             if ~np.isnan(sort_index[i][0]) and all_songs[sort_index[i][1]] not in user_songs and rank <= 10:
-                df.loc[len(df)]=[user, all_songs[sort_index[i][1]], sort_index[i][0], rank]
+                df.loc[len(df)]=[user, all_songs[sort_index[i][1]], sort_index[i][0], rank, self.train_data.loc[self.train_data['title'] == all_songs[sort_index[i][1]], 'url_link'].iloc[0]]
                 rank = rank+1
         
         #Handle the case where there are no recommendations
