@@ -12,8 +12,9 @@
       <tr>
         <th width="40%">Song</th>
         <th width="20%">Duration (sec)</th>
-        <th width="30%">Genre</th>
-        <th width="10%">Play</th> 
+        <th width="20%">Genre</th>
+        <th width="10%">Select</th> 
+        <th width="10%">Like</th> 
       </tr>
     </thead>
     {% set df_clean = df.drop_duplicates(subset='title') %}
@@ -23,8 +24,11 @@
         <td>{{ df_clean.iloc[i]['duration']|int // 1000 }}</td>
         <td>{{ df_clean.iloc[i]['genre'] }} </td>
         <td> 
+          <button class="btn btn-outline-primary" onclick="play('{{ df_clean.iloc[i]['url_link'] }}', true);"><span class="glyphicon glyphicon-play"></span></button>
+        </td> 
+        <td> 
           <form method="post" class="form-inline"> 
-            <button class="btn btn-outline-primary" onclick="play('{{ df_clean.iloc[i]['url_link'] }}', false);" name="song_choice" value="{'url_link':'{{ df_clean.iloc[i]['url_link'] }}', 'user_id':'{{user_id}}'}">Select</button>
+            <button class="btn btn-outline-primary" onclick="play('{{ df_clean.iloc[i]['url_link'] }}', false);" name="song_choice" value="{'url_link':'{{ df_clean.iloc[i]['url_link'] }}', 'user_id':'{{user_id}}'}"><span class="glyphicon glyphicon-thumbs-up"></span></button>
           </form>
         </td> 
       </tr>

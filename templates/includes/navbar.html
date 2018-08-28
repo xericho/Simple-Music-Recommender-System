@@ -9,9 +9,15 @@
     </ul>
 
     <ul class="navbar-nav navbar-right">
+      <!-- For displaying icons (https://getbootstrap.com/docs/3.3/components/) -->
+      <link href="{{ url_for('static', filename='css/bootstrap-glyphicons.css') }}" rel="stylesheet">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <span class="glyphicon glyphicon-log-in"></span>
-        {{ login_text }}
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> 
+        {% if login %}
+          <span class="glyphicon glyphicon-log-in"></span> Login
+        {% else %}
+          <span class="glyphicon glyphicon-log-out"></span> Logout
+        {% endif %}
       </button>
 
       <!-- Modal -->
