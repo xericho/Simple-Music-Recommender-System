@@ -1,12 +1,12 @@
 from flask import Flask, flash, render_template, request, redirect, session, url_for
-from flask_table import Table, Col
+# from flask_table import Table, Col
 import pickle
 import pandas as pd 
 import Recommenders as R
 import ast
 
 app = Flask(__name__)
-app.secret_key = 'placeholder'   # needed to flash notifications
+app.secret_key = 'password'   # needed to flash notifications
 
 
 def load_data(filename):

@@ -1,6 +1,4 @@
 Flask
-sqlalchemy
-Flask-SQLAlchemy
 Flask-Table
 pandas
 numpy
