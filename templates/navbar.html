@@ -4,19 +4,19 @@
     <ul class="navbar-nav mr-auto">
       <!-- Add logo -->
       <a class="navbar-brand" href="/">
-        <img style="max-height:40px; background-color:transparent;" src="{{ url_for('static', filename='images/test2.png') }}">
+        <img style="max-height:40px; background-color:transparent;" src="{{ url_for('static', filename='images/cloudify-logo.png') }}">
       </a>
     </ul>
 
+    <!-- Add modal (see https://getbootstrap.com/docs/4.1/components/modal/) -->
     <ul class="navbar-nav navbar-right">
-      <!-- For displaying icons (https://getbootstrap.com/docs/3.3/components/) -->
-      <link href="{{ url_for('static', filename='css/bootstrap-glyphicons.css') }}" rel="stylesheet">
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> 
+        <!-- Change depending if logged in/out -->
         {% if login %}
-          <span class="glyphicon glyphicon-log-in"></span> Login
+          <span class="oi oi-account-login"></span> Login
         {% else %}
-          <span class="glyphicon glyphicon-log-out"></span> Logout
+          <span class="oi oi-account-logout"></span> Change user
         {% endif %}
       </button>
 
@@ -34,7 +34,7 @@
             <div class="modal-body">
               <div class="container-fluid">
                 <!-- Add form to store user_id -->
-                <!-- Action redirects to the url -->
+                <!-- Action redirects to the url, go to dashboard when pressed -->
                 <form action="{{ url_for('dashboard') }}" class="form-inline" method="post">
                   <!-- Input box -->
                   {% set max = df.drop_duplicates(subset='user_id')|length %}

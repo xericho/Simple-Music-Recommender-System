@@ -168,7 +168,7 @@ class item_similarity_recommender_py():
         user_songs = self.get_user_items(user)    
             
         print("No. of unique songs for the user: %d" % len(user_songs))
-        print(user_songs)
+        # print(user_songs)
         
         ######################################################
         #B. Get all unique items (songs) in the training data

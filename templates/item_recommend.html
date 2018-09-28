@@ -24,7 +24,7 @@
           <td>{{ row['song'] }}</td>
           <td>{{ row['score'] }}</td>
           <td> 
-            <button class="btn btn-outline-primary" onclick="play('{{ row['url_link'] }}', true)">Select</button>
+            <button class="btn btn-outline-primary" onclick="play('{{ row['url_link'] }}', true)"><span class="oi oi-audio-spectrum"></span></button>
           </td>
         </tr>
       {% endfor %}

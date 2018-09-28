@@ -1,4 +1,3 @@
-<!-- Source: https://www.youtube.com/watch?v=zRwy8gtgJ1A -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,46 +9,27 @@
 
     <!-- Dynamically link the css file  -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
-  </head>
-
-  <header>
-    {% include 'includes/navbar.html' %}
-  </header>
-
-  <body>
-
+    <!-- For displaying icons (see https://useiconic.com/open/) -->
+    <link href="{{ url_for('static', filename='css/open-iconic-bootstrap.min.css') }}" rel="stylesheet">
     <!-- Add jquery for modals -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <!-- Dynamically link javascript bootstrap -->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <!-- Add reference for table stuff -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  </head>
+
+  <header>
+    {% include 'navbar.html' %}
+  </header>
+
+  <body>
 
     <div class="container-fluid">
-      <!-- Setup for notifications -->
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-          <div class="col-md-11" align="right">
-            <div class="alert alert-warning alert-dismissible" role="alert" style="width: 80%; text-align: left">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button> 
-              {{ message }}
-            </div>
-          </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-
       {% block body %}{% endblock %}
-      
     </div>
 
   </body>
 
-  <!-- Create a footer for Soundcloud widget -->
   <footer style="position: fixed; bottom: 0px; width: 75%;">
     <div class="footer">
       <iframe align="left" style="width:20%; height:125px;" scrolling="no" frameborder="no" src="{{ url_link }}" id="iframe"></iframe>
